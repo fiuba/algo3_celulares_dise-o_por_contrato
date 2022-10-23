@@ -18,17 +18,27 @@ public class Movistar {
     }
 
     public double recaudacion() {
-        double result = 0;
+        //  Sin stream
+        //        double result = 0;
+        //
+        //        for ( Mobile m : mobiles) {
+        //            Minuto duracionLlamadas = m.duracionTotalDeLlamadas();
+        //
+        //            result = result + duracionLlamadas.multiplicarPor(6);
+        //
+        //        }
+        //
+        //        return result;
 
-        for ( Mobile m : mobiles) {
-            Minuto duracionLlamadas = m.duracionTotalDeLlamadas();
+        // Con stream
+        return recaudacionConStreams();
 
-            result = result + duracionLlamadas.multiplicarPor(6);
+    }
 
-        }
-
-        return result;
-
+    private double recaudacionConStreams() {
+        return mobiles.stream()
+                .map((mobile) -> mobile.duracionTotalDeLlamadas().multiplicarPor(6))
+                .reduce(0.0, (a,b) -> a + b);
     }
 
 }

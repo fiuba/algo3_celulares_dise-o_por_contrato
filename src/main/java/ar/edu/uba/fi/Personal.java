@@ -20,24 +20,17 @@ public class Personal {
     public double recaudacion() {
         double result = 0;
 
-        for ( Mobile m : mobiles) {
-            Minuto duracionLlamadas = m.duracionTotalDeLlamadas();
+        // NOTA: Utilizar streams en este código puede resultar en un código criptico.
+        for ( Mobile mobile : mobiles) {
+            Minuto duracionLlamadas = mobile.duracionTotalDeLlamadas();
 
             ArrayList<Minuto> fracciones = duracionLlamadas.fraccionesDe(10);
 
-            result = result + calcularTotalPrecioPorFraccion(fracciones);
+            for (Minuto m : fracciones) {
+                result = result + m.multiplicarPorSiEsMayorIgualA(7, 10);
+                result = result + m.multiplicarPorSiEsMenorA(4, 10);
+            }
 
-        }
-
-        return result;
-    }
-
-    private double calcularTotalPrecioPorFraccion(ArrayList<Minuto> fracciones) {
-        double result = 0;
-
-        for (Minuto m : fracciones) {
-            result = result + m.multiplicarPorSiEsMayorIgualA(7, 10);
-            result = result + m.multiplicarPorSiEsMenorA(4, 10);
         }
 
         return result;

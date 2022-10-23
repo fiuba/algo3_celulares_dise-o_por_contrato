@@ -7,7 +7,7 @@ public class Registro {
 
     public Registro() {
 
-        entradas = new ArrayList<Minuto>();
+        entradas = new ArrayList<>();
     }
     public void registrar(Minuto duracion) {
 
