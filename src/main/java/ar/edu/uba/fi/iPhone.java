@@ -1,32 +1,34 @@
 package ar.edu.uba.fi;
 
-public class iPhone {
+import java.util.ArrayList;
 
-    private final double capacidadBateria;
-    private double bateriaRestante;
+public class iPhone extends Mobile {
 
 
     public iPhone() {
 
-        capacidadBateria = 5;
-        bateriaRestante = 5;
+        super(5);
     }
 
     public void llamar(MotoG motoG, Minuto duracion) {
-        double valor = duracion.multiplicarVeces(1 /* porcentaje */);
+
+        if (estaApagado()) {
+
+            throw new MobilSinBateria();
+        }
+
+        llamadas.registrar(duracion);
+
+    }
+
+    public void consumirBateria(Minuto duracion) {
+        double valor = duracion.multiplicarPor(1 /* porcentaje */);
 
         bateriaRestante = bateriaRestante - (bateriaRestante * valor / 100);
 
-        if (bateriaRestante <0 ) {
+        if (bateriaRestante < 0) {
             bateriaRestante = 0;
         }
-    }
 
-    public double bateria() {
-        return bateriaRestante;
-    }
-
-    public void cargar() {
-        bateriaRestante = capacidadBateria;
     }
 }

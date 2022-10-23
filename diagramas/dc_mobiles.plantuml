@@ -1,0 +1,31 @@
+@startuml
+
+class Mobile {
+
+    - capacidadBateria : double
+    # bateriaRestante : double
+
+    + Mobile(double capacidadBateria)
+    + bateria() : double
+    + recargar() : void
+    +  duracionTotalDeLlamadas() : Minuto
+
+    # estaApagado() : boolean
+
+}
+
+class iPhone {
+
+    + llamar(MotoG motoG, Minuto duracion) : void
+    + consumirBateria() : void
+}
+
+class MotoG {
+
+    + llamar(iPhone iphone, Minuto duracion) : void
+    + consumirBateria() : void
+}
+
+Mobile <|-- MotoG
+Mobile <|-- iPhone
+@enduml

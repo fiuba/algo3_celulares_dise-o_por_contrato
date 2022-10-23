@@ -1,28 +1,24 @@
 package ar.edu.uba.fi;
 
-import java.util.Scanner;
-
-public class MotoG {
-
-    private final double capacidadBateria;
-    private double bateriaRestante;
+public class MotoG extends Mobile {
 
     public MotoG() {
 
-        capacidadBateria = 5;
-        bateriaRestante = 5;
+        super(5);
     }
 
     public void llamar(iPhone iphone, Minuto duracion) {
+
+        llamadas.registrar(duracion);
+
+        consumirBateria();
+
+        iphone.consumirBateria(duracion);
+    }
+
+    private void consumirBateria() {
+
         bateriaRestante = bateriaRestante - 0.25;
-        iphone.llamar(this, duracion);
     }
 
-    public double bateria() {
-        return bateriaRestante;
-    }
-
-    public void cargar() {
-        bateriaRestante = capacidadBateria;
-    }
 }

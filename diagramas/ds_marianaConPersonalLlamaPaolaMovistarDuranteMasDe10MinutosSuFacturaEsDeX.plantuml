@@ -1,0 +1,41 @@
+@startuml
+title Caso: marianaConPersonalLlamaPaolaMovistarDuranteMasDe10MinutosSuFacturaEsDeX
+
+create "m : Movistar"
+":TestCase" -> "m : Movistar": Movistar()
+
+create "p : Personal"
+":TestCase" -> "p : Personal": Personal()
+
+create "m1 : MotoG"
+":TestCase" -> "m1 : MotoG": MotoG()
+
+create "m2 : iPhone"
+":TestCase" -> "m2 : iPhone": iPhone()
+
+":TestCase" -> "m : Movistar": registrar(m1)
+":TestCase" -> "p : Personal": registrar(m2)
+
+":TestCase" -> "m2 : iPhone": llamar( m1, duracion /* new Minuto(12) */)
+
+"m2 : iPhone" -> "llamadas : Registro": registrar(duracion)
+
+":TestCase" -> "p : Personal": recaudacion()
+    loop para cada mobile
+            "p : Personal" -> ": Mobile": duracionTotalDeLlamadas()
+            ": Mobile" --> "p : Personal": [duracuonTotal]
+            ": Mobile" -> "duracuonTotal: Minuto": fraccionesDe(10)
+            activate ": Mobile"
+            "duracuonTotal: Minuto" --> ": Mobile": [fracciones]]
+            ": Mobile" -> ": Mobile": calcularTotalPrecioPorFraccion(fracciones)
+
+            loop para cada fraccion
+                ": Mobile" -> ": Minuto": multiplicarPorSiEsMayorIgualA(7, 10)
+                ": Mobile" -> ": Minuto": multiplicarPorSiEsMenorA(7, 10)
+                ": Mobile" --> ": Mobile": [costoAcumulado]
+            end
+            deactivate ": Mobile"
+    end
+
+"p : Personal" --> ":TestCase": [recaudacion total]
+@enduml
